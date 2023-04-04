@@ -1,7 +1,7 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
 import useSWR from "swr";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer, isValidElement } from "react";
 import Layout from "../components/Layout";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function App({ Component, pageProps }) {
@@ -11,9 +11,17 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
+  useEffect(() => {
+    if (data) {
+      const artPiecesWithLikes = data.map((artPiece) => {
+        return { ...artPiece, isLike: false };
+      });
+
+      setArtPiecesInfo(artPiecesWithLikes);
+    }
+  }, [data]);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
   return (
     <>
       <Head>
@@ -25,6 +33,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         galleryData={data}
         artPiecesInfo={artPiecesInfo}
+        setArtPiecesInfo={setArtPiecesInfo}
       />
       <Layout />
     </>

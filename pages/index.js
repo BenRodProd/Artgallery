@@ -1,32 +1,40 @@
 import styled from "styled-components";
-import Navigation from "../components/Navigation";
+
 import Spotlight from "../components/Spotlight";
-import FavoriteButton from "../components/FavoriteButton";
+import { useEffect } from "react";
+
 const MainLayout = styled.div`
   text-align: center;
 `;
 
-export default function SpotLightPage({ galleryData }) {
+export default function SpotLightPage({
+  setArtPiecesInfo,
+  galleryData,
+  artPiecesInfo,
+}) {
   function pickRandomIndex(array) {
     return Math.floor(Math.random() * array.length);
   }
-  function getRandomData() {
+  function showRandomSpotlight() {
     const randomIndex = pickRandomIndex(galleryData);
+
     return (
       <>
         <Spotlight
           image={galleryData[randomIndex].imageSource}
           artist={galleryData[randomIndex].artist}
           slug={galleryData[randomIndex].slug}
-          galleryData={galleryData}
+          artPiecesInfo={artPiecesInfo}
+          setArtPiecesInfo={setArtPiecesInfo}
         />
       </>
     );
   }
 
+  console.log(artPiecesInfo);
   return (
     <div>
-      <MainLayout>{getRandomData()}</MainLayout>
+      <MainLayout>{showRandomSpotlight()}</MainLayout>
     </div>
   );
 }

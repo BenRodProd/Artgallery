@@ -1,15 +1,10 @@
-export default function FavoriteButton({ slug, galleryData }) {
-  //   console.log("slug", galleryData);
-  //   const isFavorite = galleryData.map((el) => {
-  //     if (el.slug === slug) {
-  //       return el;
-  //     }
-  //   });
+export default function FavoriteButton({ isFavorite, onToggleFavorite }) {
+  console.log(isFavorite());
   return (
     <>
-      {/* <button onClick={() => onToggleFavorite(slug)}>
+      <button onClick={() => onToggleFavorite()}>
         {isFavorite ? "liked" : "notliked"}
-      </button> */}
+      </button>
     </>
   );
 }
