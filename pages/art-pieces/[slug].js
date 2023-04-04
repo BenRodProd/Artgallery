@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import ArtPieceDetails from "../../components/ArtPieceDetails";
 
-export default function SlugPage({ galleryData }) {
+export default function SlugPage({
+  galleryData,
+  setArtPiecesInfo,
+  artPiecesInfo,
+}) {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -13,8 +17,11 @@ export default function SlugPage({ galleryData }) {
         image={currentPiece.imageSource}
         title={currentPiece.name}
         artist={currentPiece.artist}
+        slug={currentPiece.slug}
         year={currentPiece.year}
         genre={currentPiece.genre}
+        artPiecesInfo={artPiecesInfo}
+        setArtPiecesInfo={setArtPiecesInfo}
       />
     </div>
   );

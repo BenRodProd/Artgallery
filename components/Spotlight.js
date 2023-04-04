@@ -11,13 +11,21 @@ export default function Spotlight({
   console.log("inside Spotlight", artPiecesInfo);
   function onToggleFavorite() {
     const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
-    setArtPiecesInfo();
+    const thisSlugLike = thisSlug.isLike;
+    setArtPiecesInfo(
+      artPiecesInfo.map((el) => {
+        if (el.slug === slug) {
+          return { ...el, isLike: !thisSlugLike };
+        }
+        return { ...el };
+      })
+    );
   }
 
   function checkIfLiked() {
     const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
-    console.log("thisSlug", thisSlug);
-    if (thisSlug.isLiked) {
+    console.log("thisSlug", thisSlug.isLike);
+    if (thisSlug.isLike) {
       return true;
     } else {
       return false;

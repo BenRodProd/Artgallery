@@ -5,11 +5,19 @@ const Layout = styled.div`
   text-align: center;
   background-color: beige;
 `;
-export default function ArtPiecesPage({ galleryData, artPiecesInfo }) {
+export default function ArtPiecesPage({
+  galleryData,
+  artPiecesInfo,
+  setArtPiecesInfo,
+}) {
   return (
     <>
       <Layout>
-        <ArtPieces artPiecesInfo={artPiecesInfo} pieces={galleryData} />
+        <ArtPieces
+          setArtPiecesInfo={setArtPiecesInfo}
+          artPiecesInfo={artPiecesInfo}
+          pieces={galleryData}
+        />
       </Layout>
     </>
   );

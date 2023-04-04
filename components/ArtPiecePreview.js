@@ -7,8 +7,31 @@ export default function ArtPiecePreview({
   title,
   artist,
   artPiecesInfo,
+  setArtPiecesInfo,
 }) {
-  console.log("artpiecepreview", artPiecesInfo);
+  function onToggleFavorite() {
+    const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
+    const thisSlugLike = thisSlug.isLike;
+    setArtPiecesInfo(
+      artPiecesInfo.map((el) => {
+        if (el.slug === slug) {
+          return { ...el, isLike: !thisSlugLike };
+        }
+        return { ...el };
+      })
+    );
+  }
+
+  function checkIfLiked() {
+    const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
+    console.log("thisSlug", thisSlug.isLike);
+    if (thisSlug.isLike) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <>
       <li>
@@ -16,9 +39,8 @@ export default function ArtPiecePreview({
         <p>Title: {title}</p>
         <p>Artist: {artist}</p>
         <FavoriteButton
-          artPiecesInfo={artPiecesInfo}
-          slug={slug}
-          galleryData={galleryData}
+          onToggleFavorite={onToggleFavorite}
+          isFavorite={checkIfLiked}
         />
         <p>_____________</p>
       </li>

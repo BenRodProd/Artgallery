@@ -6,7 +6,7 @@ const Layout = styled.ul`
   list.style: none;
   padding: 0;
 `;
-export default function ArtPieces({ pieces, artPiecesInfo }) {
+export default function ArtPieces({ pieces, artPiecesInfo, setArtPiecesInfo }) {
   return (
     <>
       <Layout>
@@ -20,6 +20,7 @@ export default function ArtPieces({ pieces, artPiecesInfo }) {
               artist={el.artist}
               galleryData={pieces}
               artPiecesInfo={artPiecesInfo}
+              setArtPiecesInfo={setArtPiecesInfo}
             />
           </Link>
         ))}
