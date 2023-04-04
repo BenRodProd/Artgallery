@@ -18,6 +18,7 @@ export default function SpotLightPage({ galleryData }) {
           image={galleryData[randomIndex].imageSource}
           artist={galleryData[randomIndex].artist}
           slug={galleryData[randomIndex].slug}
+          galleryData={galleryData}
         />
       </>
     );

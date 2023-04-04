@@ -14,17 +14,6 @@ export default function App({ Component, pageProps }) {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
-  function onToggleFavorite(slug) {
-    setArtPiecesInfo(
-      artPiecesInfo.map((el) => {
-        if (el.slug === slug) {
-          return !el.isLiked;
-        }
-        return el;
-      })
-    );
-  }
-
   return (
     <>
       <Head>
@@ -36,7 +25,6 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         galleryData={data}
         artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={onToggleFavorite}
       />
       <Layout />
     </>

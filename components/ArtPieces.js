@@ -18,6 +18,7 @@ export default function ArtPieces({ pieces }) {
               image={el.imageSource}
               title={el.name}
               artist={el.artist}
+              galleryData={pieces}
             />
           </Link>
         ))}
