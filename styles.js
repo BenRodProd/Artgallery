@@ -8,6 +8,7 @@ export default createGlobalStyle`
   }
 
   body {
+    justify-items:center;
     margin: 0;
     font-family: system-ui;
   }
@@ -19,4 +20,5 @@ export default createGlobalStyle`
     text-decoration:none;
     color: black;
   }
+
 `;

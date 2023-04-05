@@ -7,10 +7,16 @@ const NavLayout = styled.nav`
   bottom: 0;
   width: 100%;
   background-color: grey;
+
+  padding-top: 25px;
+  margin-top: 50px;
 `;
-export default function Layout() {
+export default function Layout({ children }) {
   return (
     <>
+      {children}
+      <br />
+      <br />
       <NavLayout>
         <Navigation />
       </NavLayout>

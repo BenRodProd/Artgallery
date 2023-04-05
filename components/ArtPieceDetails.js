@@ -1,12 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+const { v4: uuidv4 } = require("uuid");
 import FavoriteButton from "./FavoriteButton";
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
+import ShowColor from "./ShowColor";
+
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+const ColorLayout = styled.div`
+  display: flex;
 `;
 export default function ArtPieceDetails({
   slug,
@@ -15,6 +23,7 @@ export default function ArtPieceDetails({
   artist,
   year,
   genre,
+  colors,
   artPiecesInfo,
   setArtPiecesInfo,
 }) {
@@ -33,13 +42,21 @@ export default function ArtPieceDetails({
 
   function checkIfLiked() {
     const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
-    console.log("thisSlug", thisSlug.isLike);
+
     if (thisSlug.isLike) {
       return true;
     } else {
       return false;
     }
   }
+  function thisComment() {
+    const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
+    if (thisSlug.comment) {
+      return thisSlug.comment;
+    }
+    return "";
+  }
+
   return (
     <>
       <Layout>
@@ -51,6 +68,20 @@ export default function ArtPieceDetails({
         <FavoriteButton
           isFavorite={checkIfLiked}
           onToggleFavorite={onToggleFavorite}
+        />
+        <p>__________________</p>
+        <h3>Color Palette</h3>
+        <ColorLayout>
+          {colors.map((el) => (
+            <ShowColor key={uuidv4()} color={el} />
+          ))}
+        </ColorLayout>
+        <h3>Comment</h3>
+        <Comments comments={thisComment()} />
+        <CommentForm
+          slug={slug}
+          artPiecesInfo={artPiecesInfo}
+          setArtPiecesInfo={setArtPiecesInfo}
         />
         <Link href="/art-pieces">BACK</Link>
       </Layout>

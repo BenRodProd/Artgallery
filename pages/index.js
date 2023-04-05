@@ -31,7 +31,6 @@ export default function SpotLightPage({
     );
   }
 
-  console.log(artPiecesInfo);
   return (
     <div>
       <MainLayout>{showRandomSpotlight()}</MainLayout>

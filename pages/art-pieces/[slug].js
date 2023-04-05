@@ -22,6 +22,7 @@ export default function SlugPage({
         genre={currentPiece.genre}
         artPiecesInfo={artPiecesInfo}
         setArtPiecesInfo={setArtPiecesInfo}
+        colors={currentPiece.colors}
       />
     </div>
   );

@@ -14,6 +14,7 @@ export default function Navigation() {
       <NavLayout>
         <Link href="/">Spotlight</Link>
         <Link href="/art-pieces">Artpieces</Link>
+        <Link href="/favorites">Favorites</Link>
       </NavLayout>
     </>
   );

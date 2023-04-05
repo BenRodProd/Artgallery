@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+const { v4: uuidv4 } = require("uuid");
 import FavoriteButton from "./FavoriteButton";
 export default function ArtPiecePreview({
   galleryData,
@@ -6,6 +8,7 @@ export default function ArtPiecePreview({
   image,
   title,
   artist,
+  colors,
   artPiecesInfo,
   setArtPiecesInfo,
 }) {
@@ -24,7 +27,7 @@ export default function ArtPiecePreview({
 
   function checkIfLiked() {
     const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
-    console.log("thisSlug", thisSlug.isLike);
+
     if (thisSlug.isLike) {
       return true;
     } else {
@@ -35,7 +38,9 @@ export default function ArtPiecePreview({
   return (
     <>
       <li>
-        <Image width="100" height="100" src={image} alt={title}></Image>
+        <Link key={uuidv4()} href={"/art-pieces/" + slug}>
+          <Image width="100" height="100" src={image} alt={title}></Image>
+        </Link>
         <p>Title: {title}</p>
         <p>Artist: {artist}</p>
         <FavoriteButton
