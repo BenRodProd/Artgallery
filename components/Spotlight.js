@@ -1,7 +1,6 @@
 import Image from "next/image";
-
+import styled from "styled-components";
 import FavoriteButton from "./FavoriteButton";
-
 export default function Spotlight({
   setArtPiecesInfo,
   artPiecesInfo,
@@ -9,6 +8,7 @@ export default function Spotlight({
   image,
   artist,
 }) {
+  console.log("inside Spotlight", artPiecesInfo);
   function onToggleFavorite() {
     const thisSlug = artPiecesInfo.find((el) => el.slug === slug);
     const thisSlugLike = thisSlug.isLike;

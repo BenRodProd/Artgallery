@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ArtPiecesPage from ".";
-const mockList = [
+import Spotlight from "./Spotlight";
+
+const mockArtPiecesInfo = [
   {
     slug: "orange-red-and-green",
     artist: "Steve Johnson",
@@ -165,26 +166,29 @@ const mockList = [
     },
   },
 ];
-test("all art pieces are displayed as a list", () => {
-  render(<ArtPiecesPage pieces={mockList} />);
-  const list = screen.getByRole("list", {});
-  expect(list).toBeInTheDocument();
+
+test("the art piece image is displayed", () => {
+  render(
+    <Spotlight
+      artPiecesInfo={mockArtPiecesInfo}
+      slug="painting-one"
+      image="/painting-one.jpg"
+      artist="John Doe"
+    />
+  );
+  const image = screen.getByRole("img", { name: "John Doe" });
+  expect(image).toBeInTheDocument();
 });
 
-test("each art piece's image is displayed", () => {
-  render(<ArtPiecesPage pieces={mockList} />);
-  const images = screen.getAllByRole("img", {});
-  expect(images).toHaveLength(11);
-});
-
-test("each art piece's title is displayed", () => {
-  render(<ArtPiecesPage pieces={mockList} />);
-  const titles = screen.getAllByRole("heading", { level: 2 });
-  expect(titles).toHaveLength(11);
-});
-
-test("each art piece's artist is displayed", () => {
-  render(<ArtPiecesPage pieces={mockList} />);
-  const artists = screen.getAllByRole("heading", { level: 3 });
-  expect(artists).toHaveLength(11);
+test("the art piece artist is displayed", () => {
+  render(
+    <Spotlight
+      artPiecesInfo={mockArtPiecesInfo}
+      slug="painting-one"
+      image="/painting-one.jpg"
+      artist="John Doe"
+    />
+  );
+  const artist = screen.getByText("Artist: John Doe");
+  expect(artist).toBeInTheDocument();
 });
